@@ -3,9 +3,10 @@ import { createStaticNavigation, StaticParamList } from '@react-navigation/nativ
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Platform } from 'react-native';
 
-import { Explore } from './screens/Explore';
 import { Home } from './screens/Home';
+import { Intro } from './screens/Intro';
 import { NotFound } from './screens/NotFound';
+import { Profile } from './screens/Profile';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -20,11 +21,11 @@ const HomeTabs = createBottomTabNavigator({
         tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
       },
     },
-    Explore: {
-      screen: Explore,
+    Profile: {
+      screen: Profile,
       options: {
         headerShown: false,
-        tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
       },
     },
   },
@@ -35,7 +36,6 @@ const HomeTabs = createBottomTabNavigator({
     tabBarStyle: Platform.select({
       ios: {
         // Use a transparent background on iOS to show the blur effect
-        possition: 'absolute',
       },
       default: {},
     }),
@@ -44,6 +44,15 @@ const HomeTabs = createBottomTabNavigator({
 
 const RootStack = createNativeStackNavigator({
   screens: {
+    Intro: {
+      screen: Intro,
+      options: {
+        headerShown: false,
+      },
+      linking: {
+        path: '/intro',
+      },
+    },
     HomeTabs: {
       screen: HomeTabs,
       options: {
