@@ -66,9 +66,7 @@ export function Home() {
     try {
       const shareText = `"${quote.quote}"\n— ${quote.author}`;
       if (await Sharing.isAvailableAsync()) {
-        await Sharing.shareAsync({
-          message: shareText,
-        });
+        await Sharing.shareAsync(shareText);
       }
     } catch (error) {
       console.error('Error sharing:', error);

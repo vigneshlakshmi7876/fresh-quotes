@@ -7,6 +7,7 @@ import { useColorScheme } from 'react-native';
 
 import { Colors } from './constants/Colors';
 import { QuotesProvider } from './context/QuotesContext';
+import { AuthProvider } from './auth/context/AuthContext';
 import { Navigation } from './navigation';
 
 SplashScreen.preventAutoHideAsync();
@@ -34,20 +35,22 @@ export function App() {
         };
 
   return (
-    <QuotesProvider>
-      <Navigation
-        theme={theme}
-        linking={{
-          enabled: 'auto',
-          prefixes: [
-            // Change the scheme to match your app's scheme defined in app.json
-            'helloworld://',
-          ],
-        }}
-        onReady={() => {
-          SplashScreen.hideAsync();
-        }}
-      />
-    </QuotesProvider>
+    <AuthProvider>
+      <QuotesProvider>
+        <Navigation
+          theme={theme}
+          linking={{
+            enabled: 'auto',
+            prefixes: [
+              // Change the scheme to match your app's scheme defined in app.json
+              'helloworld://',
+            ],
+          }}
+          onReady={() => {
+            SplashScreen.hideAsync();
+          }}
+        />
+      </QuotesProvider>
+    </AuthProvider>
   );
 }

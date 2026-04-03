@@ -7,6 +7,9 @@ import { Home } from './screens/Home';
 import { Intro } from './screens/Intro';
 import { NotFound } from './screens/NotFound';
 import { Profile } from './screens/Profile';
+import { SignIn } from '@/auth/screens/SignIn';
+import { SignUp } from '@/auth/screens/SignUp';
+import { ForgotPassword } from '@/auth/screens/ForgotPassword';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -42,6 +45,38 @@ const HomeTabs = createBottomTabNavigator({
   },
 });
 
+const AuthStack = createNativeStackNavigator({
+  screens: {
+    SignIn: {
+      screen: SignIn,
+      options: {
+        headerShown: false,
+      },
+      linking: {
+        path: '/signin',
+      },
+    },
+    SignUp: {
+      screen: SignUp,
+      options: {
+        headerShown: false,
+      },
+      linking: {
+        path: '/signup',
+      },
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
+      options: {
+        headerShown: false,
+      },
+      linking: {
+        path: '/forgot-password',
+      },
+    },
+  },
+});
+
 const RootStack = createNativeStackNavigator({
   screens: {
     Intro: {
@@ -51,6 +86,12 @@ const RootStack = createNativeStackNavigator({
       },
       linking: {
         path: '/intro',
+      },
+    },
+    Auth: {
+      screen: AuthStack,
+      options: {
+        headerShown: false,
       },
     },
     HomeTabs: {
